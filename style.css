@@ -1,0 +1,278 @@
+:root {
+    --christmas-red: #D42426;
+    --christmas-green: #165B33;
+    --gold: #F8B229;
+    --snow: #F0F2F5;
+    --dark-bg: #0F172A;
+    --card-bg: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--snow);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    background-image: radial-gradient(circle, #1a2c4e 0%, #0F172A 100%);
+}
+
+h1, h2, h3 {
+    font-family: 'Mountains of Christmas', cursive;
+    text-align: center;
+}
+
+header {
+    margin-top: 2rem;
+    text-align: center;
+    z-index: 10;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    color: var(--gold);
+    text-shadow: 0 0 10px rgba(248, 178, 41, 0.5);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+/* Snowflake Animation Container */
+.snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url('data:image/svg+xml;utf8,%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"%3E%3Ccircle cx="10" cy="10" r="1.5" fill="white" opacity="0.3" /%3E%3C/svg%3E'),
+    url('data:image/svg+xml;utf8,%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"%3E%3Ccircle cx="15" cy="15" r="2" fill="white" opacity="0.3" /%3E%3C/svg%3E');
+    animation: snow 20s linear infinite;
+}
+
+@keyframes snow {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 500px 1000px, 400px 400px; }
+}
+
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+/* Countdown Styles */
+#countdown-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
+
+#countdown {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--christmas-red);
+    padding: 1rem;
+    border-radius: 10px;
+    min-width: 80px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.time-block span {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.time-block label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+#wait-message {
+    margin-top: 1rem;
+    color: var(--gold);
+    font-style: italic;
+}
+
+/* Cards Styles */
+#cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    height: 300px;
+    cursor: pointer;
+    perspective: 1000px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* LOCKED STATE */
+#cards-container.locked .card {
+    filter: grayscale(0.8);
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+#cards-container:not(.locked) .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px var(--gold);
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--dark-bg);
+    border: 4px solid var(--christmas-green);
+    border-radius: 15px;
+}
+
+.card h3 {
+    color: var(--christmas-red);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.card .icon {
+    font-size: 4rem;
+    margin: 1rem 0;
+}
+
+.status-dependency {
+    font-weight: bold;
+    color: #666;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: var(--snow);
+    color: var(--dark-bg);
+    padding: 3rem;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 0 50px rgba(255,255,255,0.2);
+    border: 5px solid var(--christmas-red);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--christmas-red);
+}
+
+#password-section {
+    text-align: center;
+}
+
+#password-section input {
+    padding: 10px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border: 2px solid var(--christmas-green); /* Removed extra brace */
+    margin: 20px 0;
+    width: 80%;
+}
+
+#password-section button {
+    background: var(--christmas-green);
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#password-section button:hover {
+    background: var(--christmas-red);
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#letter-content {
+    max-height: 70vh;
+    overflow-y: auto;
+    text-align: left;
+    line-height: 1.6;
+}
+
+#letter-title {
+    color: var(--christmas-red);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 10px;
+}

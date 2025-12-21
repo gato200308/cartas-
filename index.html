@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Navidad</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Fuente Navideña -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="snow-container"></div>
+
+    <header>
+        <h1>🎄 Feliz Navidad 🎄</h1>
+        <p class="subtitle">Una sorpresa especial espera...</p>
+    </header>
+
+    <main>
+        <div id="countdown-container">
+            <h2>Tiempo para abrir los regalos:</h2>
+            <div id="countdown">
+                <div class="time-block">
+                    <span id="days">00</span>
+                    <label>Días</label>
+                </div>
+                <div class="time-block">
+                    <span id="hours">00</span>
+                    <label>Horas</label>
+                </div>
+                <div class="time-block">
+                    <span id="minutes">00</span>
+                    <label>Minutos</label>
+                </div>
+                <div class="time-block">
+                    <span id="seconds">00</span>
+                    <label>Segundos</label>
+                </div>
+            </div>
+            <p id="wait-message">¡Paciencia! Aún no es media noche.</p>
+        </div>
+
+        <div id="cards-container" class="locked">
+            <!-- Carta 1: Papá -->
+            <div class="card" onclick="openCard('papa')">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Para Papá</h3>
+                        <div class="icon">🦌</div>
+                        <p class="status-dependency">🔒 Bloqueado</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carta 2: Madrastra -->
+            <div class="card" onclick="openCard('madrastra')">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Para Madrastra</h3>
+                        <div class="icon">🎄</div>
+                        <p class="status-dependency">🔒 Bloqueado</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carta 3: Mamá -->
+            <div class="card" onclick="openCard('mama')">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Para Mamá</h3>
+                        <div class="icon">⭐</div>
+                        <p class="status-dependency">🔒 Bloqueado</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carta 4: Pareja -->
+            <div class="card" onclick="openCard('pareja')">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>Para Mi Pareja</h3>
+                        <div class="icon">❤️</div>
+                        <p class="status-dependency">🔒 Bloqueado</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para contraseña y contenido -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+
+            <div id="password-section">
+                <h3>Introduce la contraseña</h3>
+                <p>Esta carta es privada. Escribe la clave para leerla.</p>
+                <input type="password" id="password-input" placeholder="Contraseña">
+                <button onclick="checkPassword()">Abrir Carta</button>
+                <p id="error-msg" class="error hidden">Contraseña incorrecta</p>
+            </div>
+
+            <div id="letter-content" class="hidden">
+                <h2 id="letter-title">Título de la Carta</h2>
+                <div id="letter-body" class="letter-text">
+                    <!-- El contenido de la carta se insertará aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REPOSITORIO DE CARTAS (NO TOCAR LA ESTRUCTURA, SOLO EL TEXTO) -->
+    <!-- Aquí puedes escribir cartas TAN LARGAS como quieras. -->
+    <div id="letters-repository" style="display: none;">
+
+        <div id="content-papa">
+            <p>Querido Papá,</p>
+            <p>En esta Navidad, me detengo un momento para escribirte todo aquello que, entre el trabajo, las
+                ocupaciones y la rutina, a veces olvido decirte mirándote a los ojos. Quiero que sepas que para mí, eres
+                mucho más que la figura paterna que la vida me dio; <b>eres mi héroe silencioso, mi amigo y mi referente
+                    de fortaleza</b>. A lo largo de los años, he visto cómo has enfrentado tormentas sin doblarte, y esa
+                imagen tuya de pie ante la adversidad es lo que me da fuerzas a mí cuando siento que flaqueo.</p>
+
+            <p>Quiero agradecerte infinitamente por el regalo del inglés. Quizás en su momento parecía solo una clase
+                más, pero hoy sé que fue una llave maestra que me diste para abrir puertas en el mundo. Gracias por esa
+                visión, por querer que volara más alto, y sobre todo, gracias por haber estado ahí cuando sentí que el
+                mundo se me venía encima. Saber que tengo tu respaldo incondicional, que si caigo tú estás ahí para
+                darme la mano (o el empujón necesario), es mi mayor seguridad.</p>
+
+            <p>Reconozco que a veces nos gana el silencio. Sé que no nos llamamos todo lo que deberíamos, que pasamos
+                días sin hablar, pero quiero que tengas la certeza absoluta de que <b>no hay un solo día en que no te
+                    tenga en cuenta</b>. Estás presente en mis decisiones, en mis logros y en mi corazón. Aunque la
+                distancia o el tiempo se interpongan, el vínculo que tenemos es inquebrantable. Te amo, viejo, con un
+                amor que no siempre sé expresar con palabras habladas, pero que espero sientas en estas líneas.</p>
+
+            <p>Tengo también un deseo profundo en estas fechas, un deseo que involucra a la familia que seguimos
+                construyendo. Miro a mi hermano y ruego para que herede de ti esa inmensa fortaleza de carácter. Mi
+                anhelo navideño es que él pueda aprender de nuestra historia, de nuestros aciertos y errores; que con tu
+                guía sabia, logre pulir el camino que tiene por delante. Deseo de corazón que tome lo mejor de ti y
+                tenga la sabiduría para ser una <b>versión renovada de padre</b>, que rompa moldes y dé siempre un paso
+                más allá en amor, presencia y ternura con los suyos, aprendiendo del gran maestro que fuiste, pero
+                escribiendo su propia historia mejorada.</p>
+
+            <p>Gracias por ser, por estar y por resistir. Que esta Navidad te llene de la paz que mereces.</p>
+            <p><b>¡Feliz Navidad, Papá!</b></p>
+        </div>
+
+        <div id="content-madrastra">
+            <p>Querida Kathe,</p>
+            <p>En esta Navidad, quiero darte las gracias por algo que no tiene precio: tu presencia y tu <b>paciencia
+                    infinita</b> conmigo desde que era pequeño. Gracias por haber asumido el reto de ayudar a criarme,
+                por acogerme y por cada momento que dedicaste a guiarme.</p>
+
+            <p>Te veo y veo a una verdadera guerrera. Admiro profundamente esa fuerza con la que te levantas cada día,
+                luchando por mi hermano y por nosotros, haciendo todo con amor incluso cuando el cuerpo duele o el
+                malestar intenta ganarte. Eres un ejemplo de alegría y cariño en medio de la batalla, y eso me inspira
+                todos los días.</p>
+
+            <p>Quiero que sepas que siempre te tengo muy presente en mis oraciones. Le pido a Dios incansablemente que
+                te cure, que te cubra con su sanidad, porque sé en mi corazón que Él tiene propósitos grandes para ti.
+                Te lo digo con el alma en la mano: <b>no estoy listo para que te vayas</b>, y tengo la certeza de fe de
+                que no lo harás, de que no nos vas a abandonar todavía. Tu lucha es nuestra lucha.</p>
+
+            <p>Gracias por no rendirte nunca, por seguir adelante a pesar de todo y por el amor que nos das. Que esta
+                Navidad Dios renueve tus fuerzas.</p>
+            <p><b>¡Te quiero mucho!</b></p>
+        </div>
+
+        <div id="content-mama">
+            <p>Querida Mamá,</p>
+            <p>En esta fecha tan especial y sentimental, quiero entregarte estas palabras que salen de lo más profundo
+                de mi ser. Gracias, mamá. <b>Gracias infinitas</b> por abrirme las puertas de tu hogar y de tu vida, por
+                haberme dado la oportunidad de oro de estudiar en la universidad sin la preocupación de tener que
+                trabajar, permitiéndome enfocarme en mi futuro.</p>
+
+            <p>Veo tu esfuerzo diario, veo cómo sigues luchando y dándolo todo en ese trabajo, incluso sabiendo que
+                estás agotada y que a veces sientes que no das más. Eres un roble. Quiero que tengas la certeza de que
+                mi mayor anhelo es graduarme pronto, conseguir un buen empleo y empezar a devolverte un poco de todo lo
+                inmenso que me has dado. A veces me asaltan pequeños ataques de miedo, dudas de si podré lograrlo, pero
+                tu ejemplo me levanta.</p>
+
+            <p>Me siento increíblemente orgulloso de ti. Decir <b>"mi mamá es psicóloga y tiene una maestría"</b> me
+                llena la boca de orgullo. ¿Quién lo hubiera pensado, verdad? Hemos recorrido un largo camino, sanando
+                heridas, dejando atrás las peleas del pasado y construyendo esta nueva relación. Siento que te debo
+                mucho, pero más que deuda, es gratitud eterna.</p>
+
+            <p>Ten por seguro que aquí me tienes, que te voy a amar y a consentir con todo lo que tenga y pueda en
+                cuanto empiece a volar con mis propias alas. Eres grande, mamá. Gracias por no rendirte conmigo.</p>
+            <p><b>¡Feliz Navidad! Te amo.</b></p>
+        </div>
+
+        <div id="content-pareja">
+            <p>Mi Amor,</p>
+            <p>En esta Navidad, quiero tomarme un momento para decirte algo que a veces, en la prisa del día a día, se
+                me escapa: <b>eres mi regalo más grande</b>. No necesito esperar al 25 de diciembre para saber que tengo
+                suerte, porque te tengo a ti a mi lado todos los días.</p>
+
+            <p>Gracias por ser mi paz cuando el mundo es un caos, por ser mi risa favorita y por creer en mí incluso
+                cuando yo dudo. Cada momento contigo es un tesoro que guardo en el corazón. Admiro tu luz, tu bondad y
+                esa forma tan tuya de hacer que todo sea mejor simplemente estando ahí.</p>
+
+            <p>Quiero que esta Navidad sea mágica para ti, pero más que eso, quiero prometerte que seguiré esforzándome
+                para construir un futuro juntos lleno de amor, aventuras y sueños cumplidos. Eres mi equipo, mi
+                confidente y el amor de mi vida.</p>
+
+            <p>Que la magia de estas fechas ilumine tu sonrisa, que es lo que más me gusta ver en este mundo.</p>
+            <p><b>¡Te amo con todo mi corazón! Feliz Navidad.</b></p>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -9,7 +9,7 @@ const targetDate = new Date("December 25, 2025 00:00:00").getTime();
 // Simplemente cambia el texto dentro de las comillas "".
 const PASSWORDS = {
     papa: "0810",
-    madrastra: "1234",
+    madrastra: "molina24",
     mama: "1808",
     pareja: "0525"
 };

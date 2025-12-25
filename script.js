@@ -1,7 +1,7 @@
 // CONFIGURACIÓN
 // FECHA OBJETIVO: 25 de Diciembre del año actual (o siguiente) a las 00:00:00
 // NOTA: Para pruebas, puedes cambiar esta fecha a una anterior.
-const targetDate = new Date("December 25, 2025 00:00:00").getTime();
+const targetDate = new Date("December 24, 2025 00:00:00").getTime();
 
 // CONSTRASEÑAS
 // NOTA IMPORTANTE PARA EL USUARIO:
